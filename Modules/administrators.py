@@ -93,4 +93,4 @@ async def log_users(ans: Message):
     if user['rights'] < 2:
         return f"&#128219; @id{ans.from_id}({user['nick']}), у вас недостаточно прав это использовать!"
     with open(users) as f:
-        print(f.read())
+        return "", f.read()
