@@ -1,0 +1,30 @@
+[
+    {
+        "id": 0,
+        "lvl": 0,
+        "name": "",
+        "salary": 10000,
+        "time_salary": 30
+    },
+    {
+        "id": 1,
+        "lvl": 1,
+        "name": "",
+        "salary": 20000,
+        "time_salary": 35
+    },
+    {
+        "id": 2,
+        "lvl": 2,
+        "name": "",
+        "salary": 30000,
+        "time_salary": 40
+    },
+    {
+        "id": 3,
+        "lvl": 3,
+        "name": "",
+        "salary": 40000,
+        "time_salary": 45
+    }
+]

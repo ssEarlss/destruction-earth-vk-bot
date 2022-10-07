@@ -1,0 +1,11 @@
+[
+    {
+        "uid": 0,
+        "name": "Теест",
+        "lvl": 0,
+        "balance": 0,
+        "owner": 305074620,
+        "supervisor": null,
+        "users": 1
+    }
+]

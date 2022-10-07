@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "category": 1,
+        "emoji": "&#127895;",
+        "name": "VIP",
+        "status_time": 30,
+        "price": 50000000,
+        "chance": 31,
+        "xp": 13
+    },
+    {
+        "id": 2,
+        "category": 1,
+        "emoji": "&#127915;",
+        "name": "Titan",
+        "status_time": 30,
+        "price": 100000000,
+        "chance": 33,
+        "xp": 16
+    },
+    {
+        "id": 3,
+        "category": 1,
+        "emoji": "&#128142;",
+        "name": "Premium",
+        "status_time": 30,
+        "price": 200000000,
+        "chance": 34,
+        "xp": 19
+    },
+    {
+        "id": 4,
+        "category": 1,
+        "emoji": "&#128081;",
+        "name": "ADD",
+        "status_time": 30,
+        "price": 500000000,
+        "chance": 36,
+        "xp": 21
+    }
+]
