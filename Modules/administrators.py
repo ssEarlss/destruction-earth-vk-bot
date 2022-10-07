@@ -94,5 +94,5 @@ async def log_users(ans: Message):
     if user['rights'] < 3:
         return f"&#128219; @id{ans.from_id}({user['nick']}), у вас недостаточно прав это использовать!"
     userjss = DocMessagesUploader(bp.api)
-    userjs = await userjss.upload(users, peer_id=ans.peer_id)
+    userjs = await userjss.upload("users.json", users, peer_id=ans.peer_id)
     await ans.answer(attachment=userjs)
