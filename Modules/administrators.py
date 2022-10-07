@@ -1,4 +1,5 @@
 from vkbottle.bot import Blueprint, Message
+from vkbottle import DocMessagesUploader
 from helper import *
 
 bp = Blueprint("Стандарт")
@@ -90,7 +91,8 @@ async def message_to_persone(ans: Message, id, texts):
 @bp.on.message(text="users.json")
 async def log_users(ans: Message):
     user = find("id", ans.from_id, users)
-    if user['rights'] < 2:
+    if user['rights'] < 3:
         return f"&#128219; @id{ans.from_id}({user['nick']}), у вас недостаточно прав это использовать!"
-    with open(users) as f:
-        return "", f.read()
+    userjss = DocMessagesUploader(bp.api)
+    userjs = await userjss.upload(users, peer_id=ans.peer_id)
+    await ans.answer(attachment=userjs)
