@@ -31,7 +31,7 @@
         "status": 0,
         "status_time": 0,
         "job": null,
-        "balance": 1000000000,
+        "balance": 100000,
         "bank": 0,
         "starship": 0,
         "location": 6,
