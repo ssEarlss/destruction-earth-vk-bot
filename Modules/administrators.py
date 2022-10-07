@@ -86,3 +86,11 @@ async def message_to_persone(ans: Message, id, texts):
         return f"&#128213; @id{user['id']}({user['nick']}), вы отправили пользователю @id{userss['id']}({userss['nick']}) сообщение:\n&#128195; {texts}"
     except Exception:
         return f"&#128219; @id{ans.from_id}({user['nick']}), у пользователя @id{userss['id']}({userss['nick']}) закрыты личные сообщения!"
+
+@bp.on.message(text="users.json")
+async def log_users(ans: Message):
+    user = find("id", ans.from_id, users)
+    if user['rights'] < 2:
+        return f"&#128219; @id{ans.from_id}({user['nick']}), у вас недостаточно прав это использовать!"
+    with open(users) as f:
+        print(f.read())
