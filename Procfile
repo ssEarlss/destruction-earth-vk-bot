@@ -1,1 +1,1 @@
-web: pythob3 main.py
+worker: pythob3 main.py
