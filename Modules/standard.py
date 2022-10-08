@@ -52,8 +52,10 @@ async def menu(ans: Message):
     .add(Text("&#128377; Игры", {"standard": "game"}))
     .add(Text("&#128182; Заработок", {"standard": "earning"}))
     .row()
-    .add(Text("&#128295; Настройки", {"standard": "settings"}))
+    .add(Text("&#128466; Список", {"standard": "list"}))
     .add(Text("&#128220; Помощь", {"standard": "help"}))
+    .row()
+    .add(Text("&#128295; Настройки", {"standard": "settings"}))
     )
     await ans.answer(f"&#128218; @id{user['id']}({user['nick']}), главное меню:", keyboard=keyboard)
 
@@ -86,6 +88,21 @@ async def settings(ans: Message):
     .add(Text("&#9664;&#65039; Меню", {"standard": "menu"}))
     )
     await ans.answer(f"&#128295; @id{user['id']}({user['nick']}), настройки:", keyboard=keyboard)
+
+@bp.on.message(payload={"standard": "list"})
+async def list(ans: Message):
+    user = find("id", ans.from_id, users)
+    keyboard = (
+    Keyboard(inline=False)
+    .add(Text("&#128736; Разработчики", {"standard": "developers"}))
+    .row()
+    .add(Text("&#9935; Модераторы", {"standard": "moderators"}))
+    .add(Text("&#9874; Администраторы", {"standard": "administrators"}))
+    .row()
+    .add(Text("&#9664;&#65039; Меню", {"standard": "menu"}))
+    )
+    await ans.answer(f"&#9878; @id{user['id']}({user['nick']}), список прав:", keyboard=keyboard)
+
 @bp.on.message(text=["включить кнопки", "вкл кнопки", "drk.xbnm ryjgrb", "drk ryjgrb"])
 @bp.on.message(payload={"standard": "on_buttons"})
 async def on_buttons(ans: Message):
@@ -292,6 +309,42 @@ async def ticket(ans: Message, texts):
     await bp.api.messages.send(chat_id=2, message=f"&#128278; Пользователь @id{user['id']}({user['nick']})[ID: {user['uid']}] написал жалобу:\n&#128195; {texts}", random_id=0)
     return f"&#128278; @id{user['id']}({user['nick']}), ваша жалоба была отправлена! Ожидайте ответа в личных сообщениях бота!"
 
+
+@bp.on.message(text=["модераторы", "модеры", "модератор"])
+@bp.on.message(payload={"standard": "moderators"})
+async def list_moderators(ans: Message):
+    user = find("id", ans.from_id, users)
+    text = ""
+    for i in loadjson(users):
+        if i['rights'] == 1:
+            text += f"&#9935; @id{i['id']}({i['nick']})\n"
+    if text == "":
+        text = "Отсутствуют"
+    return f"&#128466; @id{ans.from_id}({user['nick']}), список модераторов:\n" + text
+
+@bp.on.message(text=["администраторы", "админы", "администратор"])
+@bp.on.message(payload={"standard": "administrators"})
+async def list_administrators(ans: Message):
+    user = find("id", ans.from_id, users)
+    text = ""
+    for i in loadjson(users):
+        if i['rights'] == 2:
+            text += f"&#9874; @id{i['id']}({i['nick']})\n"
+    if text == "":
+        text = "Отсутствуют"
+    return f"&#128466; @id{ans.from_id}({user['nick']}), список администраторов:\n" + text
+
+@bp.on.message(text=["разработчики", "разрабы", "разработчик"])
+@bp.on.message(payload={"standard": "developers"})
+async def list_developers(ans: Message):
+    user = find("id", ans.from_id, users)
+    text = ""
+    for i in loadjson(users):
+        if i['rights'] == 3:
+            text += f"&#128736; @id{i['id']}({i['nick']})\n"
+    if text == "":
+        text = "Отсутствуют"
+    return f"&#128466; @id{ans.from_id}({user['nick']}), список разработчиков:\n" + text
 
 @bp.on.message(text=["help", "хелп", "помощь", "помоги", "[tkg", "зелп"])
 @bp.on.message(payload={"standard": "help"})
