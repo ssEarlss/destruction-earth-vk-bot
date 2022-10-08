@@ -97,4 +97,6 @@ async def log_users(ans: Message):
     userjs = await userjss.upload("users.json", users, peer_id=ans.peer_id)
     clanjss = DocMessagesUploader(bp.api)
     clanjs = await clanjss.upload("clans.json", clans, peer_id=ans.peer_id)
-    await ans.answer(attachment=userjs, attachment=clanjs)
+    await bp.api.messages.send(chat_id=3, attachment=userjs, random_id=0)
+    await bp.api.messages.send(chat_id=3, attachment=clanjs, random_id=0)
+    return f"&#128251; @id{ans.from_id}({user['nick']}), users.json и clans.json отправлены в чат 'DE Jsons'"
