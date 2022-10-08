@@ -67,12 +67,12 @@ async def dump_json(ans: Message, json, ids, id, name, num):
     user = find("id", ans.from_id, users)
     if user['rights'] < 3:
         return f"&#128219; @id{ans.from_id}({user['nick']}), у вас недостаточно прав это использовать!"
-    jsons = find(ids, int(id), json)
+    jsons = find(ids, int(id), f"Other/{json}.json")
     if not jsons:
-        return f"&#128219; @id{ans.from_id}({user['nick']}), такого {id} id в {json} отсутсвует!"
+        return f"&#128219; @id{ans.from_id}({user['nick']}), такого {id} id в Other/{json}.json отсутсвует!"
     jsons[name] = int(num)
-    dumpjson(jsons, json)
-    return f" @id{ans.from_id}({user['nick']}), вы изменили в {json} файле пункты: \n {name} : {num}"
+    dumpjson(jsons, f"Other/{json}.json")
+    return f" @id{ans.from_id}({user['nick']}), вы изменили в Other/{json}.json файле пункты: \n {name} : {num}"
 
 @bp.on.message(text="отправить <id> <texts>")
 async def message_to_persone(ans: Message, id, texts):
