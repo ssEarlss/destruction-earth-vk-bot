@@ -88,11 +88,13 @@ async def message_to_persone(ans: Message, id, texts):
     except Exception:
         return f"&#128219; @id{ans.from_id}({user['nick']}), у пользователя @id{userss['id']}({userss['nick']}) закрыты личные сообщения!"
 
-@bp.on.message(text="users")
+@bp.on.message(text="jsons")
 async def log_users(ans: Message):
     user = find("id", ans.from_id, users)
     if user['rights'] < 3:
         return f"&#128219; @id{ans.from_id}({user['nick']}), у вас недостаточно прав это использовать!"
     userjss = DocMessagesUploader(bp.api)
     userjs = await userjss.upload("users.json", users, peer_id=ans.peer_id)
-    await ans.answer(attachment=userjs)
+    clanjss = DocMessagesUploader(bp.api)
+    clanjs = await clanjss.upload("clans.json", clans, peer_id=ans.peer_id)
+    await ans.answer(attachment=userjs, attachment=clanjs)
