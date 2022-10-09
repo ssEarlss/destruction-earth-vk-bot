@@ -138,10 +138,7 @@ async def log_users(ans: Message):
     user = find("id", ans.from_id, users)
     if user['rights'] < 3:
         return f"&#128219; @id{ans.from_id}({user['nick']}), у вас недостаточно прав это использовать!"
-    userjss = DocMessagesUploader(bp.api)
-    userjs = await userjss.upload("users.json", users, peer_id=ans.peer_id)
-    clanjss = DocMessagesUploader(bp.api)
-    clanjs = await clanjss.upload("clans.json", clans, peer_id=ans.peer_id)
-    await bp.api.messages.send(chat_id=3, attachment=userjs, random_id=0)
-    await bp.api.messages.send(chat_id=3, attachment=clanjs, random_id=0)
+    doc = DocMessagesUploader(bp.api)
+    userjs, clanjs = await doc.upload("users.json", users, peer_id=ans.peer_id), await doc.upload("clans.json", clans, peer_id=ans.peer_id)
+    await bp.api.messages.send(chat_id=3, attachment=[userjs, clanjs], random_id=0)
     return f"&#128251; @id{ans.from_id}({user['nick']}), users.json и clans.json отправлены в чат 'DE Jsons'"
