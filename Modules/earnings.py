@@ -49,7 +49,9 @@ async def info_casino(ans: Message):
 async def casino(ans: Message, some):
     user = find("id", ans.from_id, users)
     if some == "все":
-        some = user['balance']
+        some = str(user['balance'])
+    if some == "всё":
+        some = str(user['balance'])
     if user['balance'] < replace(some): 
         return f"&#128219; @id{ans.from_id}({user['nick']}), у вас недостаточно метеоров!"
     if replace(some) < 500: 
