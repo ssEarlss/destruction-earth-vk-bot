@@ -76,7 +76,7 @@ async def message_to_persone(ans: Message, id, texts):
     except Exception:
         return f"&#128219; @id{ans.from_id}({user['nick']}), у пользователя @id{userss['id']}({userss['nick']}) закрыты личные сообщения!"
 
-@bp.on.nessage(text="все пользователи")
+@bp.on.message(text="все пользователи")
 async def all_users(ans:Message):
     user = find("id", ans.from_id, users)
     if user['rights'] < 2:
@@ -86,7 +86,7 @@ async def all_users(ans:Message):
         num += 1
     return f" @id{ans.from_id}({user['nick']}), всего пользователей: {num}"
 
-@bp.on.nessage(text="список пользователей")
+@bp.on.message(text="список пользователей")
 async def all_users(ans:Message):
     user = find("id", ans.from_id, users)
     if user['rights'] < 2:
@@ -96,7 +96,7 @@ async def all_users(ans:Message):
         text += f"@id{i['id']}({i['nick']})\n"
     await ans.answer(f"&#128424; @id{ans.from_id}({user['nick']}), список пользователей:\n" + text)
 
-@bp.on.nessage(text="все кланы")
+@bp.on.message(text="все кланы")
 async def all_users(ans:Message):
     user = find("id", ans.from_id, users)
     if user['rights'] < 2:
@@ -106,7 +106,7 @@ async def all_users(ans:Message):
         num += 1
     return f" @id{ans.from_id}({user['nick']}), всего кланов: {num}"
 
-@bp.on.nessage(text="список кланов")
+@bp.on.message(text="список кланов")
 async def all_users(ans:Message):
     user = find("id", ans.from_id, users)
     if user['rights'] < 2:
