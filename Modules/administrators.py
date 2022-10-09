@@ -94,6 +94,8 @@ async def all_users(ans:Message):
     text = ""
     for i in loadjson(users):
         text += f"@id{i['id']}({i['nick']})\n"
+    if text == "":
+        text = "Отсутствуют"
     await ans.answer(f"&#128424; @id{ans.from_id}({user['nick']}), список пользователей:\n" + text)
 
 @bp.on.message(text="все кланы")
@@ -114,6 +116,8 @@ async def all_users(ans:Message):
     text = ""
     for i in loadjson(clans):
         text += f"@id{i['owner']}({i['name']})\n"
+    if text == "":
+        text = "Отсутствуют"
     await ans.answer(f"&#128424; @id{ans.from_id}({user['nick']}), список кланов:\n" + text)
 
 
