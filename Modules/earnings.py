@@ -48,6 +48,8 @@ async def info_casino(ans: Message):
 @bp.on.message(text=["казино <some>", "казик <some>"])
 async def casino(ans: Message, some):
     user = find("id", ans.from_id, users)
+    if some == "все":
+        some = user['balance']
     if user['balance'] < replace(some): 
         return f"&#128219; @id{ans.from_id}({user['nick']}), у вас недостаточно метеоров!"
     if replace(some) < 500: 
@@ -109,7 +111,7 @@ async def dice(ans: Message, some):
     if djackpot == 100:
         user['balance'] += int(replace(some) * 10)
         dumpjson(user, users)
-        return f"&#127924; Джекпот!\n&#127922; @id{ans.from_id}({user['nick']}), у вас выпало число: {player}. \n&#127922; Выпало число у @destructionearth(бота): {bot}\n&#9829;&#65039; Вы выиграли: {task(replace(some) * 10)} метеоров. \n &#9732; Ваш текущий баланс: {task(user['balance'])} метеоров"
+        return f"&#127924; А вы везунчик!\n&#127922; @id{ans.from_id}({user['nick']}), у вас выпало число: {player}. \n&#127922; Выпало число у @destructionearth(бота): {bot}\n&#9829;&#65039; Вы выиграли: {task(replace(some) * 10)} метеоров. \n &#9732; Ваш текущий баланс: {task(user['balance'])} метеоров"
     user['balance'] += int(replace(some) * 2)
     dumpjson(user, users)
     return f"&#127922; @id{ans.from_id}({user['nick']}), у вас выпало число: {player}. \n&#127922; Выпало число у @destructionearth(бота): {bot}\n&#9829;&#65039; Вы выиграли: {task(replace(some) * 2)} метеоров. \n &#9732; Ваш текущий баланс: {task(user['balance'])} метеоров"

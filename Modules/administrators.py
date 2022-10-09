@@ -77,7 +77,7 @@ async def dump_json(ans: Message, json, ids, id, name, num):
 @bp.on.message(text="отправить <id> <texts>")
 async def message_to_persone(ans: Message, id, texts):
     user = find("id", ans.from_id, users)
-    if user['rights'] < 2:
+    if user['rights'] < 1:
         return f"&#128219; @id{ans.from_id}({user['nick']}), у вас недостаточно прав это использовать!"
     userss = find("uid", int(id), users)
     if not userss:
