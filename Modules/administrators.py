@@ -84,7 +84,7 @@ async def all_users(ans:Message):
     num = 0
     for x in loadjson(users):
         num += 1
-    return f" @id{ans.from_id}({user['nick']}), всего пользователей: {num}"
+    return f"&#128300; @id{ans.from_id}({user['nick']}), всего пользователей: {num}"
 
 @bp.on.message(text="список пользователей")
 async def all_users(ans:Message):
@@ -104,7 +104,7 @@ async def all_users(ans:Message):
     num = 0
     for x in loadjson(clans):
         num += 1
-    return f" @id{ans.from_id}({user['nick']}), всего кланов: {num}"
+    return f"&#128300; @id{ans.from_id}({user['nick']}), всего кланов: {num}"
 
 @bp.on.message(text="список кланов")
 async def all_users(ans:Message):
